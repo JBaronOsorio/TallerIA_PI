@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Sistema de Sugerencias de Películas</h1>
+    
+    <form method="POST" class="mb-4">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" name="prompt" class="form-control" placeholder="Describe la película que buscas. Ejemplo: Película de la segunda guerra mundial" required>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    {% if recommended_movie %}
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ recommended_movie.image.url }}" class="img-fluid rounded-start" alt="{{ recommended_movie.title }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recommended_movie.title }}</h5>
+                    <p class="card-text">{{ recommended_movie.description }}</p>
+                    <p class="card-text"><small class="text-muted">Año: {{ recommended_movie.year }}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

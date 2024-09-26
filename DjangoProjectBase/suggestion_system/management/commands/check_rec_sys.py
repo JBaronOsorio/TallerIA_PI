@@ -20,7 +20,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
         #Se lee del archivo .env la api key de openai
-        _ = load_dotenv('../api_keys_1.env')
+        _ = load_dotenv('../api_keys_1 1.env')
         client = OpenAI(
         # This is the default and can be omitted
             api_key=os.environ.get('openai_apikey'),
